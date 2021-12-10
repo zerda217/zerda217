@@ -1,6 +1,4 @@
-### Hi there 👋
 
-## This  is a ✨ _special_ ✨ repository 
 ***
 - 🔭 I’m currently working on ...
 - 
