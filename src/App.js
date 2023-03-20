@@ -12,7 +12,6 @@ import store from './store/store';
 import Index from './pages';
 
 const httpLinkUri = process.env.REACT_APP_HTTPLINK_URI;
-const wsLinkUri = process.env.REACT_APP_WSLINK_URI;
 
 const httpLink = new HttpLink({
   uri: `${httpLinkUri}`,
@@ -21,27 +20,8 @@ const httpLink = new HttpLink({
   version: '0.0.1',
 });
 
-const wsLink = new WebSocketLink({
-  uri: `${wsLinkUri}`,
-  options: {
-    reconnect: true,
-  },
-});
-
-const splitLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === 'OperationDefinition' &&
-      definition.operation === 'subscription'
-    );
-  },
-  wsLink,
-  httpLink
-);
-
 const client = new ApolloClient({
-  link: splitLink,
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 
