@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './header'
 import Footer from './footer'
@@ -13,6 +13,26 @@ import styled from 'styled-components'
 
 const Index = () => {
     const [name, setName] = useState("")
+    const [isVisible, setIsVisible] = useState(false)
+
+    useEffect(() => {
+        const handleResize = () => {
+          if (window.innerWidth < 830) {
+            setIsVisible(true);
+            document.title = "요양보호사 모의시험 모바일접속"; // 원하는 타이틀로 변경합니다.
+          } else {
+            setIsVisible(false);
+          }
+        };
+    
+        handleResize(); // 초기화 할 때 한 번 호출하여 현재 크기에 따라 isVisible 값을 설정
+    
+        window.addEventListener('resize', handleResize); // 화면 크기 변경 감지하여 isVisible 값 변경
+    
+        return () => {
+          window.removeEventListener('resize', handleResize); // 컴포넌트가 언마운트 될 때 이벤트 리스너 제거
+        };
+      }, []);
 
     const NotFound = () => {
         return <div>잘못된 경로입니다.</div>
@@ -20,7 +40,12 @@ const Index = () => {
     
   return (
     <Wrap>
-        <Header name={name} />
+        {isVisible ? 
+            <Box isVisible={isVisible}>
+                모바일 접속
+            </Box> :
+            <Wrap>
+                <Header name={name} />
         <Body>
             <GridContainer>
                 <LeftPanel>
@@ -41,6 +66,8 @@ const Index = () => {
             </GridContainer>
         </Body>
         <Footer />
+            </Wrap>
+        }
     </Wrap>
   )
 }
@@ -52,6 +79,21 @@ const Wrap = styled.div`
     align-items: center;
     height: 100%;
     overflow-x: hidden;
+`;
+
+const Box = styled.div`
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #13264E;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+    transform: ${props => props.isVisible ? 'scale(1)' : 'scale(0)'};
 `;
 
 const Body = styled.div`
