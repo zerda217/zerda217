@@ -19,7 +19,7 @@ const Index = () => {
         const handleResize = () => {
           if (window.innerWidth < 830) {
             setIsVisible(true);
-            document.title = "요양보호사 모의시험 모바일접속"; // 원하는 타이틀로 변경합니다.
+            document.title = "요양보호사 모의시험 모바일화면"; // 원하는 타이틀로 변경합니다.
           } else {
             setIsVisible(false);
           }
@@ -46,26 +46,26 @@ const Index = () => {
             </Box> :
             <Wrap>
                 <Header name={name} />
-        <Body>
-            <GridContainer>
-                <LeftPanel>
-                    <Routes>
-                        <Route path='/' element={<Main name={name} setName={setName} />} />
-                        <Route path='/info' element={<Info name={name} setName={setName} />} />
-                        <Route path='/exam' element={<Exam name={name} /> } />
-                        <Route path='/test' element={<Test name={name} /> } />
-                        <Route path='/user' element={<User name={name} setName={setName} /> } />
-                        {/* <Route path='/todos' element={<Todos />} /> */}
-                        {/* <Route path='/todos/:id' element={<Todo />} /> */}
-                        <Route path='/*' element={<NotFound />} />
-                    </Routes>
-                </LeftPanel>
-                <RightPanel>
-                    <Solve />
-                </RightPanel>
-            </GridContainer>
-        </Body>
-        <Footer />
+                <Body>
+                    <GridContainer>
+                        <LeftPanel>
+                            <Routes>
+                                <Route path='/' element={<Main name={name} setName={setName} />} />
+                                <Route path='/info' element={<Info name={name} setName={setName} />} />
+                                <Route path='/exam' element={<Exam name={name} /> } />
+                                <Route path='/test' element={<Test name={name} /> } />
+                                <Route path='/user' element={<User name={name} setName={setName} /> } />
+                                {/* <Route path='/todos' element={<Todos />} /> */}
+                                {/* <Route path='/todos/:id' element={<Todo />} /> */}
+                                <Route path='/*' element={<NotFound />} />
+                            </Routes>
+                        </LeftPanel>
+                        <RightPanel>
+                            <Solve />
+                        </RightPanel>
+                    </GridContainer>
+                </Body>
+                <Footer />
             </Wrap>
         }
     </Wrap>
@@ -78,6 +78,7 @@ const Wrap = styled.div`
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
     overflow-x: hidden;
 `;
 
@@ -104,7 +105,7 @@ const Body = styled.div`
 
 const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 40vh;
+    grid-template-columns: 1fr 300px;
     height: calc(85vh - 4vh); /* 헤더 10vh, 푸터 5vh를 제외한 나머지 전체 높이 */
     width: 100%;
     //   background: orange;

@@ -24,9 +24,9 @@ const Checkbox = styled.input`
 const Label = styled.label`
   position: relative;
   display: inline-block;
-  width: 1.5em;
-  height: 1.5em;
-  line-height: 1.5em;
+  width: 1.5vh;
+  height: 1.5vh;
+  line-height: 1.5vh;
   border: 1px solid #000;
   border-radius: 50%;
   text-align: center;
