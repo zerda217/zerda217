@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import page_1 from '../image/1page.png'
+import page_2 from '../image/2page.png'
+import zoom_in from '../image/zoomin.png'
+import comment from '../image/comment.png'
 
 const Header = ({name, setViewLevel, setViewCount}) => {
     const navigate = useNavigate();
@@ -38,11 +42,21 @@ const Header = ({name, setViewLevel, setViewCount}) => {
                 </div>
             </Div>
             <div style={{display: 'flex'}}>
-                <Button onClick={() => navigate('/info')}>설명보기</Button>
-                <Button onClick={() => setViewCount(1)}>낱개보기</Button>
-                <Button onClick={() => setViewCount(2)}>모아보기</Button>
-                <Button onClick={() => setViewLevel(0)}>기본보기</Button>
-                <Button onClick={() => setViewLevel(1)}>크게보기</Button>
+                <Button onClick={() => navigate('/info')}>설명보기
+                    <Img src={comment} alt="comment" />
+                </Button>
+                <Button onClick={() => setViewCount(1)}>낱개보기 
+                    <Img src={page_1} alt="Page 1" />
+                </Button>
+                <Button onClick={() => setViewCount(2)}>모아보기 
+                    <Img src={page_2} alt="Page 2" />
+                </Button>
+                <Button onClick={() => setViewLevel(0)}>기본보기
+                
+                </Button>
+                <Button onClick={() => setViewLevel(1)}>크게보기
+                    <Img src={zoom_in} alt="zoom in" />
+                </Button>
             </div>
         </Wrap>
     )
@@ -51,7 +65,6 @@ const Header = ({name, setViewLevel, setViewCount}) => {
 
 const Wrap = styled.div`
     display: flex;
-    flex-direction: columns;
     justify-content: space-around;
     align-items: center;
     padding: 1vh 5vh;
@@ -70,11 +83,19 @@ const Div = styled.div`
 `
 
 const Button = styled.div`
-    background: ${props => props.viewLevel === 0 ? '#CCC' : '#FFF'};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: ${props => props.viewLevel === 0 ? '#000' : '#FFF'};
     color: #000;
     width: 9vh;
     height: 9vh;
     margin: 5px;
+`
+
+const Img = styled.img`
+    width: 5vh;
+    height: 5vh;
 `
 
 export default Header

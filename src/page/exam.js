@@ -6,7 +6,7 @@ const Exam = ({viewLevel}) => {
   }, []);
 
   return (
-    <div>모의 문제</div>
+    <h3>준비 중입니다.</h3>
   )
 }
 
