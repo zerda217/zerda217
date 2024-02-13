@@ -1,11 +1,13 @@
 import React from 'react'
 import data from '../data/exam_data'
 
+import styled from 'styled-components'
+
 const Question_1 = ({viewLevel}) => {
+
   return (
     <div>
-        <h1>테스트 문제</h1>
-        <div>
+        <Box viewLevel={viewLevel}>
             {data.map((d) => (
                 <div>
                     <h3 key={d.index}>
@@ -30,10 +32,17 @@ const Question_1 = ({viewLevel}) => {
 
                 </div>
             ))}
-            </div>
+        </Box>
 
     </div>
   )
 }
+
+const Box = styled.div`
+    align-items: center;
+    width: 60vh;
+    font-size: ${props => props.viewLevel === 0 ? '3vh' : '4vh'};
+    color: ${props => props.viewLevel === 0 ? '#13264E' : 'red'};
+`
 
 export default Question_1
