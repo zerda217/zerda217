@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Question_1 = ({viewLevel, viewCount, data, dataNumber}) => {
-    console.log('q1: ', dataNumber)
+    // console.log('q1: ', dataNumber)
     // console.log('d1: ', data)
     // const filterData = data.filter(item => item.id === dataNumber+1);
     let filterData = [];
@@ -16,7 +16,7 @@ const Question_1 = ({viewLevel, viewCount, data, dataNumber}) => {
             filterData = data.filter(item => item.id === dataNumber || item.id === dataNumber - 1);
         }
     }
-    console.log('ff: ', data.filter(item => item.id === dataNumber+1))
+    // console.log('ff: ', data.filter(item => item.id === dataNumber+1))
 
   return (
     <div>

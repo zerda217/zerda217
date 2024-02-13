@@ -34,7 +34,6 @@ const Index = () => {
         };
     
         handleResize(); // 초기화 할 때 한 번 호출하여 현재 크기에 따라 isVisible 값을 설정
-    
         window.addEventListener('resize', handleResize); // 화면 크기 변경 감지하여 isVisible 값 변경
     
         return () => {

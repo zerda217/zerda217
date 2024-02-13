@@ -14,10 +14,8 @@ const Footer = ({viewCount, examData, testData, dataNumber, setDataNumber}) => {
       return testData
     } else if (lastPathComponent == 'exam') {
       return examData
-    } else if (lastPathComponent == '') {
-      return 0
     } else {
-      return alert('시험 문제가 없습니다. 기다려주세요.')
+      return null
     }
   }
 
