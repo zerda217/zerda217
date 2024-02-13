@@ -15,6 +15,7 @@ import styled from 'styled-components'
 
 const Index = () => {
     const [name, setName] = useState("")
+    const [viewLevel, setViewLevel] = useState(0)
     const [isVisible, setIsVisible] = useState(false)
 
     useEffect(() => {
@@ -47,15 +48,15 @@ const Index = () => {
                 모바일 접속
             </Box> :
             <Wrap>
-                <Header name={name} />
+                <Header name={name} viewLevel={viewLevel} setViewLevel={setViewLevel} />
                 <Body>
                     <GridContainer>
                         <LeftPanel>
                             <Routes>
                                 <Route path='/' element={<Main name={name} setName={setName} />} />
                                 <Route path='/info' element={<Info name={name} setName={setName} />} />
-                                <Route path='/exam' element={<Exam name={name} /> } />
-                                <Route path='/test' element={<Test name={name} /> } />
+                                <Route path='/exam' element={<Exam name={name} viewLevel={viewLevel} /> } />
+                                <Route path='/test' element={<Test name={name} viewLevel={viewLevel} /> } />
                                 <Route path='/user' element={<User name={name} setName={setName} /> } />
                                 <Route path='/pre_confirm' element={<PreConfirm name={name} /> } />
                                 <Route path='/confirm' element={<Confirm name={name} /> } />

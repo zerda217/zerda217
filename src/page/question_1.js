@@ -1,7 +1,7 @@
 import React from 'react'
 import data from '../data/exam_data'
 
-const Question_1 = () => {
+const Question_1 = ({viewLevel}) => {
   return (
     <div>
         <h1>테스트 문제</h1>
