@@ -1,14 +1,27 @@
 import React from 'react'
-import data from '../data/exam_data'
 
 import styled from 'styled-components'
 
-const Question_1 = ({viewLevel, viewCount}) => {
+const Question_1 = ({viewLevel, viewCount, data, dataNumber}) => {
+    console.log('q1: ', dataNumber)
+    // console.log('d1: ', data)
+    // const filterData = data.filter(item => item.id === dataNumber+1);
+    let filterData = [];
+    if (viewCount === 1) {
+        filterData = data.filter(item => item.id === dataNumber + 1);
+    } else if (viewCount === 2) {
+        if (dataNumber % 2 === 0) { // viewCount가 짝수일 때
+            filterData = data.filter(item => item.id === dataNumber + 1 || item.id === dataNumber + 2);
+        } else { // viewCount가 홀수일 때
+            filterData = data.filter(item => item.id === dataNumber || item.id === dataNumber - 1);
+        }
+    }
+    console.log('ff: ', data.filter(item => item.id === dataNumber+1))
 
   return (
     <div>
         <Box viewLevel={viewLevel} viewCount={viewCount}>
-            {data.map((d) => (
+            {filterData.map((d) => (
                 <div>
                     <h3 key={d.index}>
                         {d.question} {viewCount}

@@ -10,6 +10,8 @@ import Info from './info'
 import User from './user'
 import PreConfirm from './pre_confirm'
 import Confirm from './confirm'
+import examData from '../data/exam_data'
+import testData from '../data/test_data'
 
 import styled from 'styled-components'
 
@@ -17,7 +19,9 @@ const Index = () => {
     const [name, setName] = useState("")
     const [viewLevel, setViewLevel] = useState(0)
     const [viewCount, setViewCount] = useState(1)
+    const [dataNumber, setDataNumber] = useState(0)
     const [isVisible, setIsVisible] = useState(false)
+    console.log('index: ', dataNumber)
 
     useEffect(() => {
         const handleResize = () => {
@@ -56,8 +60,8 @@ const Index = () => {
                             <Routes>
                                 <Route path='/' element={<Main name={name} setName={setName} />} />
                                 <Route path='/info' element={<Info name={name} setName={setName} />} />
-                                <Route path='/exam' element={<Exam name={name} viewLevel={viewLevel} viewCount={viewCount} /> } />
-                                <Route path='/test' element={<Test name={name} viewLevel={viewLevel} viewCount={viewCount} /> } />
+                                <Route path='/exam' element={<Exam name={name} viewLevel={viewLevel} viewCount={viewCount} data={examData} dataNumber={dataNumber} /> } />
+                                <Route path='/test' element={<Test name={name} viewLevel={viewLevel} viewCount={viewCount} data={testData} dataNumber={dataNumber} /> } />
                                 <Route path='/user' element={<User name={name} setName={setName} /> } />
                                 <Route path='/pre_confirm' element={<PreConfirm name={name} /> } />
                                 <Route path='/confirm' element={<Confirm name={name} /> } />
@@ -71,7 +75,7 @@ const Index = () => {
                         </RightPanel>
                     </GridContainer>
                 </Body>
-                <Footer />
+                <Footer viewCount={viewCount} examData={examData} testData={testData} dataNumber={dataNumber} setDataNumber={setDataNumber} />
             </Wrap>
         }
     </Wrap>
