@@ -10,11 +10,8 @@ const Question_1 = ({viewLevel, viewCount, data, dataNumber}) => {
     if (viewCount === 1) {
         filterData = data.filter(item => item.id === dataNumber + 1);
     } else if (viewCount === 2) {
-        if (dataNumber % 2 === 0) { // viewCount가 짝수일 때
-            filterData = data.filter(item => item.id === dataNumber + 1 || item.id === dataNumber + 2);
-        } else { // viewCount가 홀수일 때
-            filterData = data.filter(item => item.id === dataNumber || item.id === dataNumber - 1);
-        }
+        const startIndex = Math.min(dataNumber, data.length - 2);
+        filterData = data.filter((item, index) => index >= startIndex && index < startIndex + 2);
     }
     // console.log('ff: ', data.filter(item => item.id === dataNumber+1))
 
@@ -24,7 +21,7 @@ const Question_1 = ({viewLevel, viewCount, data, dataNumber}) => {
             {filterData.map((d) => (
                 <div>
                     <h3 key={d.index}>
-                        {d.question} {viewCount}
+                        {d.question}
                     </h3>
 
                     { d.text ?? 
