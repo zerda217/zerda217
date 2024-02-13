@@ -3,15 +3,15 @@ import data from '../data/exam_data'
 
 import styled from 'styled-components'
 
-const Question_1 = ({viewLevel}) => {
+const Question_1 = ({viewLevel, viewCount}) => {
 
   return (
     <div>
-        <Box viewLevel={viewLevel}>
+        <Box viewLevel={viewLevel} viewCount={viewCount}>
             {data.map((d) => (
                 <div>
                     <h3 key={d.index}>
-                        {d.question}
+                        {d.question} {viewCount}
                     </h3>
 
                     { d.text ?? 
@@ -39,10 +39,26 @@ const Question_1 = ({viewLevel}) => {
 }
 
 const Box = styled.div`
-    align-items: center;
-    width: 60vh;
+    // align-items: center;
     font-size: ${props => props.viewLevel === 0 ? '3vh' : '4vh'};
-    color: ${props => props.viewLevel === 0 ? '#13264E' : 'red'};
+    // color: ${props => props.viewLevel === 0 ? '#13264E' : 'red'};
+    ${props => (props.viewCount === 2 ? `
+    display: flex;
+    width: 80vh;
+    justify-content: space-around;
+    padding: 1px;
+    &::after {
+        content: '';
+        position: absolute;
+        height: 65%;
+        width: 1px;
+        background-color: black;
+        top:25vh;
+        right: 60%;
+        bottom: 0;
+      }
+  ` : `
+    width: 60vh;`)}
 `
 
 export default Question_1

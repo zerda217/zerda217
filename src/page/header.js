@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Header = ({name, viewLevel, setViewLevel}) => {
+const Header = ({name, setViewLevel, setViewCount}) => {
     const navigate = useNavigate();
     const [time, setTime] = useState(new Date());
 
@@ -23,8 +23,6 @@ const Header = ({name, viewLevel, setViewLevel}) => {
         return `${year}-${month}-${day}`;
     };
 
-    // console.log('viewLevel: ', viewLevel)
-
     return (
         <Wrap>
             <h2 onClick={() => navigate('/user')}>
@@ -41,8 +39,8 @@ const Header = ({name, viewLevel, setViewLevel}) => {
             </Div>
             <div style={{display: 'flex'}}>
                 <Button onClick={() => navigate('/info')}>설명보기</Button>
-                <Button>낱개보기</Button>
-                <Button>모아보기</Button>
+                <Button onClick={() => setViewCount(1)}>낱개보기</Button>
+                <Button onClick={() => setViewCount(2)}>모아보기</Button>
                 <Button onClick={() => setViewLevel(0)}>기본보기</Button>
                 <Button onClick={() => setViewLevel(1)}>크게보기</Button>
             </div>
