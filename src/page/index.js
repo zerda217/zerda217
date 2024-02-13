@@ -8,6 +8,8 @@ import Test from './test'
 import Main from './main'
 import Info from './info'
 import User from './user'
+import PreConfirm from './pre_confirm'
+import Confirm from './confirm'
 
 import styled from 'styled-components'
 
@@ -55,6 +57,8 @@ const Index = () => {
                                 <Route path='/exam' element={<Exam name={name} /> } />
                                 <Route path='/test' element={<Test name={name} /> } />
                                 <Route path='/user' element={<User name={name} setName={setName} /> } />
+                                <Route path='/pre_confirm' element={<PreConfirm name={name} /> } />
+                                <Route path='/confirm' element={<Confirm name={name} /> } />
                                 {/* <Route path='/todos' element={<Todos />} /> */}
                                 {/* <Route path='/todos/:id' element={<Todo />} /> */}
                                 <Route path='/*' element={<NotFound />} />

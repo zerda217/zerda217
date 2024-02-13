@@ -1,25 +1,29 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import styled from 'styled-components'
 
-const footer = () => {
+const Footer = () => {
+  const navigate = useNavigate()
+
   const handleButtonClick = () => {
-    const result = window.confirm('알림창이 뜹니다! 예 또는 아니요를 선택하세요.'); // 윈도우 confirm 창을 띄우는 함수
+    const result = window.confirm('시험을 종료하시겠습니까?'); // 윈도우 confirm 창을 띄우는 함수
     if (result) {
-      alert('사용자가 "예"를 선택했습니다.');
+      alert('예. 시험을 종료합니다.');
+      navigate('/pre_confirm');
     } else {
-      alert('사용자가 "아니요"를 선택했습니다.');
+      alert('아니요. 시험을 계속 진행합니다.');
     }
   }
   
   return (
     <Wrap>
-      <div>?</div>
+      <div>광고</div>
       <div>
         ◀ | ▶
       </div>
-      <button onClick={handleButtonClick}>
-        제출
+      <button style={{width:'200px', height:'30px'}} onClick={handleButtonClick}>
+        답안 제출
       </button>
     </Wrap>
   )
@@ -41,4 +45,4 @@ const Wrap = styled.footer`
     left: 0;
 `;
 
-export default footer
+export default Footer
