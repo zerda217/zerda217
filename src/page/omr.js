@@ -19,7 +19,7 @@ const OMRTable = ({testData, examData, sheet, setSheet}) => {
   }
 
   const data = choiceData()
-  const numbers = Array.from({ length: data.length }, (_, index) => index + 1);
+  const numbers = data ? Array.from({ length: data.length }, (_, index) => index + 1) : [];
 
   const optionNumbers = [{1: '①'}, {2: '②'}, {3: '③'}, {4: '④'}, {5: '⑤'}]
 
