@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const solve = ({testData, examData, sheet, setSheet}) => {
   return (
     <Wrap>
-        <h2>사이드</h2>
+        <h2>답지</h2>
         <Omr examData={examData} testData={testData} sheet={sheet} setSheet={setSheet} />
     </Wrap>
   )
@@ -30,14 +30,14 @@ const Table = styled.table`
 
 const Th = styled.th`
   border: 1px solid #FFF;
-  padding: 8px;
+  // padding: 8px;
   text-align: center;
   background-color: #FFF;
 `;
 
 const Td = styled.td`
   border: 1px solid #FFF;
-  padding: 8px;
+  // padding: 8px;
   text-align: center;
 `;
 

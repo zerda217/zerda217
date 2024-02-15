@@ -30,39 +30,22 @@ const OMRTable = ({testData, examData, sheet, setSheet}) => {
     setSheet(updatedSheet);
   };
   
-return (
-  <Table>
-    <tbody>
-      {numbers.map((questionNumber) => (
-        <tr key={questionNumber}>
-          <Cell>{questionNumber}.</Cell>
-          {optionNumbers.map((option) => (
-            <Cell key={Object.keys(option)[0]} onClick={() => handleClick(questionNumber)(parseInt(Object.keys(option)[0], 10))}>
-              {sheet[questionNumber - 1] && sheet[questionNumber - 1][questionNumber] === parseInt(Object.keys(option)[0], 10) ? '●' : Object.values(option)[0]}
-            </Cell>
-          ))}
-        </tr>
-      ))}
-    </tbody>
-  </Table>
-);
-
-  // return (
-  //   <Table>
-  //     <tbody>
-  //       {numbers.map((questionNumber) => (
-  //         <tr key={questionNumber}>
-  //           <Cell>{questionNumber}.</Cell>
-  //           {optionNumbers.map((option) => (
-  //             <Cell key={Object.keys(option)[0]}>
-  //               {Object.values(option)[0]}
-  //             </Cell>
-  //           ))}
-  //         </tr>
-  //       ))}
-  //     </tbody>
-  //   </Table>
-  // );
+  return (
+    <Table>
+      <tbody>
+        {numbers.map((questionNumber) => (
+          <tr key={questionNumber}>
+            <Cell>{questionNumber}.</Cell>
+            {optionNumbers.map((option) => (
+              <Cell key={Object.keys(option)[0]} onClick={() => handleClick(questionNumber)(parseInt(Object.keys(option)[0], 10))}>
+                {sheet[questionNumber - 1] && sheet[questionNumber - 1][questionNumber] === parseInt(Object.keys(option)[0], 10) ? '●' : Object.values(option)[0]}
+              </Cell>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  );
 };
 
 const Table = styled.table`
@@ -74,30 +57,7 @@ const Table = styled.table`
 
 const Cell = styled.td`
   border: 1px solid #000;
-  padding: 10px;
-`;
-
-const Checkbox = styled.input`
-  display: none;
-`;
-
-const Label = styled.label`
-  position: relative;
-  display: inline-block;
-  width: 1.5vh;
-  height: 1.5vh;
-  line-height: 1.5vh;
-  border: 1px solid #000;
-  border-radius: 50%;
-  text-align: center;
-  cursor: pointer;
-
-  /* 체크됐을 때 동그라미 안에 검은색으로 채우기 */
-  &::after {
-    content: ${props => props.checked ? '"●"' : '""'};
-    // display: block;
-    color: black;
-  }
+  padding: 3%;
 `;
 
 export default OMRTable;

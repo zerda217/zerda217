@@ -30,7 +30,7 @@ const Question_1 = ({ viewlevel, viewcount, data, dataNumber, sheet, setSheet })
         {filterData.map((d, index) => (
           <QuestionContainer key={index} viewcount={viewcount}>
             <h3>{d.id}. {d.question}</h3>
-            {d.text && <div>{d.text}</div>}
+            {d.text && <div style={{border: "1px solid black", padding: '5px', margin: '1px'}}>{d.text}</div>}
             {d.image !== "" &&
               <ImageContainer>
                 <img src={d.image} style={{ width: '50%', border: '1px solid black' }} alt="image" />
@@ -61,7 +61,7 @@ const Box = styled.div`
   // justify-content: center;
   padding: 1px;
   // box-sizing: border-box;
-  border: 1px solid red;
+  // border: 1px solid red;
 `;
 
 const QuestionContainer = styled.div`

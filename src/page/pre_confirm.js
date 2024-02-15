@@ -6,7 +6,11 @@ const Pre_confirm = () => {
   }, []);
 
   return (
-    <div>Pre_confirm</div>
+    <div>
+      <h1>
+        최종 확인
+      </h1>
+    </div>
   )
 }
 

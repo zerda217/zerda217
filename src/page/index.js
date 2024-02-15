@@ -25,7 +25,7 @@ const Index = () => {
     const [viewcount, setviewcount] = useState(1)
     const [dataNumber, setDataNumber] = useState(0)
     const [isVisible, setIsVisible] = useState(false)
-    console.log('index: ', sheet)
+    // console.log('index: ', sheet)
 
     useEffect(() => {
         const handleResize = () => {
@@ -118,7 +118,7 @@ const Body = styled.div`
 
 const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr 0.7fr;
     height: calc(85vh - 4vh); /* 헤더 10vh, 푸터 5vh를 제외한 나머지 전체 높이 */
     width: 100%;
     //   background: orange;
