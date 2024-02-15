@@ -33,7 +33,7 @@ const Footer = ({viewcount, examData, testData, dataNumber, setDataNumber}) => {
   
   return (
     <Wrap>
-      <div>광고</div>
+      <div></div>
       <div style={{display:'flex'}}>
         <div onClick={() => setDataNumber(0)}>처음으로</div>
 
