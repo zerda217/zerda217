@@ -6,7 +6,7 @@ import page_2 from '../image/2page.png'
 import zoom_in from '../image/zoomin.png'
 import comment from '../image/comment.png'
 
-const Header = ({name, setViewLevel, setViewCount}) => {
+const Header = ({name, setviewlevel, setviewcount}) => {
     const navigate = useNavigate();
     const [time, setTime] = useState(new Date());
 
@@ -45,16 +45,16 @@ const Header = ({name, setViewLevel, setViewCount}) => {
                 <Button onClick={() => navigate('/info')}>설명보기
                     <Img src={comment} alt="comment" />
                 </Button>
-                <Button onClick={() => setViewCount(1)}>낱개보기 
+                <Button onClick={() => setviewcount(1)}>낱개보기 
                     <Img src={page_1} alt="Page 1" />
                 </Button>
-                <Button onClick={() => setViewCount(2)}>모아보기 
+                <Button onClick={() => setviewcount(2)}>모아보기 
                     <Img src={page_2} alt="Page 2" />
                 </Button>
-                <Button onClick={() => setViewLevel(0)}>기본보기
+                <Button onClick={() => setviewlevel(0)}>기본보기
                 
                 </Button>
-                <Button onClick={() => setViewLevel(1)}>크게보기
+                <Button onClick={() => setviewlevel(1)}>크게보기
                     <Img src={zoom_in} alt="zoom in" />
                 </Button>
             </div>
@@ -86,7 +86,7 @@ const Button = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: ${props => props.viewLevel === 0 ? '#000' : '#FFF'};
+    background: ${props => props.viewlevel === 0 ? '#000' : '#FFF'};
     color: #000;
     width: 9vh;
     height: 9vh;

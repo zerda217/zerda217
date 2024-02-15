@@ -3,7 +3,7 @@ import { useNavigate, useLocation  } from 'react-router-dom'
 
 import styled from 'styled-components'
 
-const Footer = ({viewCount, examData, testData, dataNumber, setDataNumber}) => {
+const Footer = ({viewcount, examData, testData, dataNumber, setDataNumber}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
@@ -38,9 +38,9 @@ const Footer = ({viewCount, examData, testData, dataNumber, setDataNumber}) => {
         <div onClick={() => setDataNumber(0)}>처음으로</div>
 
         <div onClick={() => { 
-    if (viewCount === 1) {
+    if (viewcount === 1) {
         setDataNumber(prev => prev > 0 && prev - 1);
-    } else if (viewCount === 2) {
+    } else if (viewcount === 2) {
         setDataNumber(prev => prev > 0 && prev - 2);
     }
 }}>
@@ -48,9 +48,9 @@ const Footer = ({viewCount, examData, testData, dataNumber, setDataNumber}) => {
 </div>
 <div>||</div>
 <div onClick={() => { 
-    if (viewCount === 1) {
+    if (viewcount === 1) {
         setDataNumber(prev => prev < data.length - 1 && prev + 1);
-    } else if (viewCount === 2) {
+    } else if (viewcount === 2) {
         setDataNumber(prev => prev < data.length - 2 && prev + 2);
     }
 }}>
@@ -58,9 +58,9 @@ const Footer = ({viewCount, examData, testData, dataNumber, setDataNumber}) => {
 </div>
 
 <div onClick={() => { 
-    if (viewCount === 1) {
+    if (viewcount === 1) {
         setDataNumber(data.length - 1);
-    } else if (viewCount === 2) {
+    } else if (viewcount === 2) {
         setDataNumber(data.length - 2);
     }
 }}>

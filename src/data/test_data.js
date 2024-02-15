@@ -43,8 +43,7 @@ const data = [{
     option4: "부산",
     option5: "광주",
     answer: 1
-}
-,{
+},{
     id : 4,
     sub1: 1,
     sub2: 2,
@@ -59,8 +58,7 @@ const data = [{
     option4: "장영실",
     option5: "이순신",
     answer: 5
-}
-,{
+},{
     id : 5,
     sub1: 1,
     sub2: 2,
@@ -75,8 +73,7 @@ const data = [{
     option4: "답4",
     option5: "답5",
     answer: 3
-}
-,{
+},{
     id : 6,
     sub1: 1,
     sub2: 2,
@@ -91,8 +88,7 @@ const data = [{
     option4: "답4",
     option5: "답5",
     answer: 3
-}
-,{
+},{
     id : 7,
     sub1: 1,
     sub2: 2,
@@ -107,8 +103,7 @@ const data = [{
     option4: "답4",
     option5: "답5",
     answer: 3
-}
-,{
+},{
     id : 8,
     sub1: 1,
     sub2: 2,
@@ -123,8 +118,7 @@ const data = [{
     option4: "답4",
     option5: "답5",
     answer: 3
-}
-,{
+},{
     id : 9,
     sub1: 1,
     sub2: 2,
@@ -139,8 +133,7 @@ const data = [{
     option4: "답4",
     option5: "답5",
     answer: 3
-}
-,{
+},{
     id : 10,
     sub1: 1,
     sub2: 2,
@@ -155,6 +148,21 @@ const data = [{
     option4: "답4",
     option5: "답5",
     answer: 3
-}]
+},{
+    id : 11,
+    sub1: 1,
+    sub2: 3,
+    sub3: 2,
+    year: [2018, 2015],
+    question: "데이터11",
+    text: "지문11",
+    image: "",
+    option1: "답1",
+    option2: "답2",
+    option3: "답3",
+    option4: "답4",
+    option5: "답5",
+    answer: 3
+},]
 
 export default data

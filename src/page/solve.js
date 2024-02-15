@@ -3,11 +3,11 @@ import Omr from './omr'
 
 import styled from 'styled-components'
 
-const solve = () => {
+const solve = ({testData, examData, sheet, setSheet}) => {
   return (
     <Wrap>
         <h2>사이드</h2>
-        <Omr />
+        <Omr examData={examData} testData={testData} sheet={sheet} setSheet={setSheet} />
     </Wrap>
   )
 }

@@ -16,20 +16,24 @@ import testData from '../data/test_data'
 import styled from 'styled-components'
 
 const Index = () => {
+    const data = Array.from({ length: 88 }, (_, index) => ({ [index + 1]: 0 }));
+    
     const [name, setName] = useState("")
-    const [viewLevel, setViewLevel] = useState(0)
-    const [viewCount, setViewCount] = useState(1)
+    const [testId, setTestId] = useState("")
+    const [sheet, setSheet] = useState(data)
+    const [viewlevel, setviewlevel] = useState(0)
+    const [viewcount, setviewcount] = useState(1)
     const [dataNumber, setDataNumber] = useState(0)
     const [isVisible, setIsVisible] = useState(false)
-    console.log('index: ', dataNumber)
+    console.log('index: ', sheet)
 
     useEffect(() => {
         const handleResize = () => {
           if (window.innerWidth < 830) {
-            setIsVisible(true);
+            // setIsVisible(true);
             document.title = "요양보호사 모의시험 모바일화면"; // 원하는 타이틀로 변경합니다.
-          } else {
-            setIsVisible(false);
+        //   } else {
+            // setIsVisible(false);
           }
         };
     
@@ -52,15 +56,15 @@ const Index = () => {
                 모바일 접속
             </Box> :
             <Wrap>
-                <Header name={name} setViewLevel={setViewLevel} setViewCount={setViewCount} />
+                <Header name={name} setviewlevel={setviewlevel} setviewcount={setviewcount} />
                 <Body>
                     <GridContainer>
                         <LeftPanel>
                             <Routes>
                                 <Route path='/' element={<Main name={name} setName={setName} />} />
                                 <Route path='/info' element={<Info name={name} setName={setName} />} />
-                                <Route path='/exam' element={<Exam name={name} viewLevel={viewLevel} viewCount={viewCount} data={examData} dataNumber={dataNumber} /> } />
-                                <Route path='/test' element={<Test name={name} viewLevel={viewLevel} viewCount={viewCount} data={testData} dataNumber={dataNumber} /> } />
+                                <Route path='/exam' element={<Exam name={name} viewlevel={viewlevel} viewcount={viewcount} data={examData} dataNumber={dataNumber} sheet={sheet} setSheet={setSheet} /> } />
+                                <Route path='/test' element={<Test name={name} viewlevel={viewlevel} viewcount={viewcount} data={testData} dataNumber={dataNumber} sheet={sheet} setSheet={setSheet} /> } />
                                 <Route path='/user' element={<User name={name} setName={setName} /> } />
                                 <Route path='/pre_confirm' element={<PreConfirm name={name} /> } />
                                 <Route path='/confirm' element={<Confirm name={name} /> } />
@@ -70,11 +74,11 @@ const Index = () => {
                             </Routes>
                         </LeftPanel>
                         <RightPanel>
-                            <Solve />
+                            <Solve examData={examData} testData={testData} sheet={sheet} setSheet={setSheet} />
                         </RightPanel>
                     </GridContainer>
                 </Body>
-                <Footer viewCount={viewCount} examData={examData} testData={testData} dataNumber={dataNumber} setDataNumber={setDataNumber} />
+                <Footer viewcount={viewcount} examData={examData} testData={testData} dataNumber={dataNumber} setDataNumber={setDataNumber} />
             </Wrap>
         }
     </Wrap>
