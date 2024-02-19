@@ -3,18 +3,24 @@ import ImageModal from './image_modal';
 import zoom_in from '../image/zoomin.png';
 import styled from 'styled-components';
 
-const Question_1 = ({ viewlevel, viewcount, data, dataNumber, sheet, setSheet }) => {
+import useStore from './store';
+
+const Question_1 = () => {
+  const { viewlevel, viewcount, questionNumber, sheet, setSheet, testData } = useStore();
   const optionNumbers = [{1: '①'}, {2: '②'}, {3: '③'}, {4: '④'}, {5: '⑤'}]
   const [clickedOption, setClickedOption] = useState(null);
   const [isModal, setIsModal] = useState(false);
+  const data = testData;
 
   let filterData = [];
   if (viewcount === 1) {
-    filterData = data.filter(item => item.id === dataNumber + 1);
+    filterData = data.filter(item => item.id === questionNumber + 1);
   } else if (viewcount === 2) {
-    const startIndex = Math.min(dataNumber, data.length - 2);
+    const startIndex = Math.min(questionNumber, data.length - 2);
     filterData = data.filter((item, index) => index >= startIndex && index < startIndex + 2);
   }
+  
+  // console.log('!!: ', testData)
 
   const handleClick = (number) => (value) => {
     setClickedOption(value);
@@ -33,7 +39,7 @@ const Question_1 = ({ viewlevel, viewcount, data, dataNumber, sheet, setSheet })
             {d.text && <div style={{border: "1px solid black", padding: '5px', margin: '1px'}}>{d.text}</div>}
             {d.image !== "" &&
               <ImageContainer>
-                <img src={d.image} style={{ width: '50%', border: '1px solid black' }} alt='image' />
+                <img src={d.image} style={{ width: '50%', border: '1px solid black' }} alt="image" />
                 <img src={zoom_in} style={{ width: '3vh', padding: '1vh' }} onClick={() => setIsModal(true)} />
                 {isModal && <ImageModal image={d.image} setIsModal={setIsModal}>큰 이미지</ImageModal>}
               </ImageContainer>

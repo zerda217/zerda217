@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom'
 
+import useStore from './store';
 import styled from 'styled-components';
 
-const OMRTable = ({testData, examData, sheet, setSheet}) => {
-  const location = useLocation();
-  const path = location.pathname;
-  const lastPathComponent = path.substring(path.lastIndexOf('/') + 1);
+const OMRTable = () => {
+  const { testData, examData, sheet, setSheet } = useStore();
+  const dataType = useStore((state) => state.dataType);
 
   const choiceData = () => {
-    if (lastPathComponent == 'test') {
+    if (dataType == 'test') {
       return testData
-    } else if (lastPathComponent == 'exam') {
+    } else if (dataType == 'exam') {
       return examData
     } else {
       return null
@@ -35,7 +35,7 @@ const OMRTable = ({testData, examData, sheet, setSheet}) => {
       <tbody>
         {numbers.map((questionNumber) => (
           <tr key={questionNumber}>
-            <Cell>{questionNumber}.</Cell>
+            <Cell><b>{questionNumber}.</b></Cell>
             {optionNumbers.map((option) => (
               <Cell key={Object.keys(option)[0]} onClick={() => handleClick(questionNumber)(parseInt(Object.keys(option)[0], 10))}>
                 {sheet[questionNumber - 1] && sheet[questionNumber - 1][questionNumber] === parseInt(Object.keys(option)[0], 10) ? '●' : Object.values(option)[0]}

@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import useStore from './store';
 import styled from 'styled-components';
 
-const Pre_confirm = ({sheet}) => {
-  console.log('pp: ', sheet)
+const Pre_confirm = () => {
+  const { sheet } = useStore();
+
+  // console.log('pp: ', sheet)
   useEffect(() => {
     document.title = "요양보호사 모의시험 제출최종확인";
   }, []);
@@ -26,7 +29,7 @@ const Pre_confirm = ({sheet}) => {
       <div>시험을 정말 종료하시겠습니까?</div>
       <Table>
         <tbody>
-        {sheet.map((item, index) => (
+        {/* {sheet.map((item, index) => (
           index % 10 === 0 && (
             <tr key={index}>
               <TableHeader><b>{Object.keys(item)[0]}</b></TableHeader>
@@ -39,7 +42,7 @@ const Pre_confirm = ({sheet}) => {
               ))}
             </tr>
           )
-        ))}
+        ))} */}
         </tbody>
       </Table>
       <button onClick={onClickYes}>예</button>

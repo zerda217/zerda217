@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './header'
 import Footer from './footer'
 import Solve from './solve'
@@ -13,33 +13,47 @@ import Confirm from './confirm'
 import examData from '../data/exam_data'
 import testData from '../data/test_data'
 
+import useStore from './store';
 import styled from 'styled-components'
 
 const Index = () => {
+    const { isvisible, setisvisible } = useStore();
+    const setDataType = useStore((state) => state.setDataType);
+
+    const location = useLocation();
+    const path = location.pathname;
+    const lastPathComponent = path.substring(path.lastIndexOf('/') + 1);
+
+    useEffect(() => {
+        const choiceData = () => {
+            if (lastPathComponent == 'test') {
+                return 'test'
+            } else if (lastPathComponent == 'exam') {
+                return 'exam'
+            }
+        }
+        const result = choiceData()
+        setDataType(result)
+    }, [lastPathComponent, setDataType])
+
     const data = Array.from({ length: 88 }, (_, index) => ({ [index + 1]: 0 }));
     
-    const [name, setName] = useState("")
-    const [testId, setTestId] = useState("")
     const [sheet, setSheet] = useState(data)
-    const [viewlevel, setviewlevel] = useState(0)
     const [viewcount, setviewcount] = useState(1)
-    const [dataNumber, setDataNumber] = useState(0)
-    const [isVisible, setIsVisible] = useState(false)
-    console.log('dataNumber: ', dataNumber)
-    console.log('index: ', sheet)
 
     useEffect(() => {
         const handleResize = () => {
           if (window.innerWidth < 830) {
-            setIsVisible(true);
+            setisvisible(true);
             document.title = "요양보호사 모의시험 모바일화면"; // 원하는 타이틀로 변경합니다.
           } else {
-            setIsVisible(false);
+            setisvisible(false);
+            document.title = "요양보호사 모의시험"
           } 
         };
     
-        handleResize(); // 초기화 할 때 한 번 호출하여 현재 크기에 따라 isVisible 값을 설정
-        window.addEventListener('resize', handleResize); // 화면 크기 변경 감지하여 isVisible 값 변경
+        handleResize(); // 초기화 할 때 한 번 호출하여 현재 크기에 따라 isvisible 값을 설정
+        window.addEventListener('resize', handleResize); // 화면 크기 변경 감지하여 isvisible 값 변경
     
         return () => {
           window.removeEventListener('resize', handleResize); // 컴포넌트가 언마운트 될 때 이벤트 리스너 제거
@@ -52,36 +66,31 @@ const Index = () => {
     
   return (
     <Wrap>
-        {/* {isVisible ?  */}
-            {/* <Box isVisible={isVisible}> */}
-                {/* 모바일 접속 */}
-            {/* </Box> : */}
-            <Wrap>
-                <Header name={name} setviewlevel={setviewlevel} setviewcount={setviewcount} />
-                <Body>
-                    <GridContainer>
-                        <LeftPanel>
-                            <Routes>
-                                <Route path='/' element={<Main name={name} setName={setName} />} />
-                                <Route path='/info' element={<Info name={name} setName={setName} />} />
-                                <Route path='/exam' element={<Exam name={name} viewlevel={viewlevel} viewcount={viewcount} data={examData} dataNumber={dataNumber} sheet={sheet} setSheet={setSheet} /> } />
-                                <Route path='/test' element={<Test name={name} viewlevel={viewlevel} viewcount={viewcount} data={testData} dataNumber={dataNumber} sheet={sheet} setSheet={setSheet} /> } />
-                                <Route path='/user' element={<User name={name} setName={setName} /> } />
-                                <Route path='/pre_confirm' element={<PreConfirm sheet={sheet}  /> } />
-                                <Route path='/confirm' element={<Confirm examData={examData} testData={testData} sheet={sheet} /> } />
-                                {/* <Route path='/todos' element={<Todos />} /> */}
-                                {/* <Route path='/todos/:id' element={<Todo />} /> */}
-                                <Route path='/*' element={<NotFound />} />
-                            </Routes>
-                        </LeftPanel>
-                        <RightPanel>
-                            <Solve examData={examData} testData={testData} sheet={sheet} setSheet={setSheet} />
-                        </RightPanel>
-                    </GridContainer>
-                </Body>
-                <Footer viewcount={viewcount} examData={examData} testData={testData} setDataNumber={setDataNumber} />
-            </Wrap>
-        {/* } */}
+        <Wrap>
+            <Header />
+            <Body>
+                <GridContainer isvisible={isvisible}>
+                    <LeftPanel>
+                        <Routes>
+                            <Route path='/' element={<Main />} />
+                            <Route path='/info' element={<Info />} />
+                            <Route path='/exam' element={<Exam /> } />
+                            <Route path='/test' element={<Test /> } />
+                            <Route path='/user' element={<User /> } />
+                            <Route path='/pre_confirm' element={<PreConfirm /> } />
+                            <Route path='/confirm' element={<Confirm />} />
+                            {/* <Route path='/todos' element={<Todos />} /> */}
+                            {/* <Route path='/todos/:id' element={<Todo />} /> */}
+                            <Route path='/*' element={<NotFound />} />
+                        </Routes>
+                    </LeftPanel>
+                    <RightPanel>
+                        <Solve />
+                    </RightPanel>
+                </GridContainer>
+            </Body>
+            <Footer />
+        </Wrap>
     </Wrap>
   )
 }
@@ -108,7 +117,7 @@ const Box = styled.div`
     align-items: center;
     font-size: 24px;
     transition: transform 0.3s ease;
-    transform: ${props => props.isVisible ? 'scale(1)' : 'scale(0)'};
+    transform: ${props => props.isvisible ? 'scale(1)' : 'scale(0)'};
 `;
 
 const Body = styled.div`
@@ -119,18 +128,15 @@ const Body = styled.div`
 
 const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: ${props => props.isVisible ? '1fr 0fr' : '1fr 300px' };
+    grid-template-columns: ${props => props.isvisible ? '1fr 0.5fr' : '1fr 300px' };
     transition: transform 0.3s ease;
-    transform: ${props => props.isVisible ? 'scale(0)' : 'scale(1)'};
     height: calc(85vh - 4vh); /* 헤더 10vh, 푸터 5vh를 제외한 나머지 전체 높이 */
     width: 100%;
-    // background: orange;
 `;
 
 const LeftPanel = styled.div`
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
     overflow-y: auto;
     padding: 1vh;

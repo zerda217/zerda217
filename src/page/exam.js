@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const Exam = ({viewlevel, viewcount, data, dataNumber, setSheet}) => {
+const Exam = () => {
   useEffect(() => {
     document.title = "요양보호사 모의시험 모의문제";
   }, []);

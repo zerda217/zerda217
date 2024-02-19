@@ -3,12 +3,12 @@ import Omr from './omr'
 
 import styled from 'styled-components'
 
-const Solve = ({testData, examData, sheet, setSheet}) => {
+const Solve = () => {
 
   return (
     <Wrap>
         <h2>답지</h2>
-        <Omr examData={examData} testData={testData} sheet={sheet} setSheet={setSheet} />
+        <Omr />
     </Wrap>
   )
 }
@@ -16,9 +16,7 @@ const Solve = ({testData, examData, sheet, setSheet}) => {
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
-//   width: 40vh;
   height: 90vh;
 //   padding: 1vh;
 //   border: 1px solid red;

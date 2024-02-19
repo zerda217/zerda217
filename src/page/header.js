@@ -6,7 +6,11 @@ import page_2 from '../image/2page.png'
 import zoom_in from '../image/zoomin.png'
 import comment from '../image/comment.png'
 
-const Header = ({name, setviewlevel, setviewcount}) => {
+import useStore from './store';
+
+const Header = () => {
+    const { name, seatNumber, setviewlevel, setviewcount } = useStore();
+
     const navigate = useNavigate();
     const [time, setTime] = useState(new Date());
 
@@ -18,19 +22,10 @@ const Header = ({name, setviewlevel, setviewcount}) => {
         return () => clearInterval(timer);
     }, []);
 
-
-    const getCurrentDate = () => {
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    };
-
     return (
         <Wrap>
             <h2 onClick={() => navigate('/user')}>
-                <Div>{getCurrentDate().slice(-2)}</Div>
+                <Div>{seatNumber}</Div>
                 <Div>{name ? name : '성함'}</Div>
             </h2>
             <Div onClick={() => navigate('/')}>

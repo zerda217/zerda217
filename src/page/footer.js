@@ -1,19 +1,19 @@
 import React from 'react'
-import { useNavigate, useLocation  } from 'react-router-dom'
+import { useNavigate  } from 'react-router-dom'
 
+import useStore from './store';
 import styled from 'styled-components'
 
-const Footer = ({viewcount, examData, testData, setDataNumber}) => {
+const Footer = () => {
+  const { viewcount, examData, testData, setQuestionNumber } = useStore();
+  const dataType = useStore((state) => state.dataType);
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const path = location.pathname;
-  const lastPathComponent = path.substring(path.lastIndexOf('/') + 1);
 
   const choiceData = () => {
-    if (lastPathComponent === 'test') {
+    if (dataType === 'test') {
       return testData;
-    } else if (lastPathComponent === 'exam') {
+    } else if (dataType === 'exam') {
       return examData;
     }
     return null;
@@ -35,14 +35,14 @@ const Footer = ({viewcount, examData, testData, setDataNumber}) => {
     <Wrap>
       <div></div>
       <div style={{display:'flex'}}>
-        <Div onClick={() => setDataNumber(0)}>처음으로</Div>
+        <Div onClick={() => setQuestionNumber(0)}>처음으로</Div>
 
         <Div 
           onClick={() => { 
             if (viewcount === 1) {
-                setDataNumber(prev => prev > 0 && prev - 1);
+              setQuestionNumber(prev => prev > 0 && prev - 1);
             } else if (viewcount === 2) {
-                setDataNumber(prev => prev > 0 && prev - 2);
+              setQuestionNumber(prev => prev > 0 && prev - 2);
             }
         }}>
           ◀
@@ -51,9 +51,9 @@ const Footer = ({viewcount, examData, testData, setDataNumber}) => {
         <Div 
           onClick={() => { 
             if (viewcount === 1) {
-                setDataNumber(prev => prev < data.length - 1 && prev + 1);
+              setQuestionNumber(prev => prev < data.length - 1 && prev + 1);
             } else if (viewcount === 2) {
-                setDataNumber(prev => prev < data.length - 2 && prev + 2);
+              setQuestionNumber(prev => prev < data.length - 2 && prev + 2);
             }
         }}>
           ▶
@@ -61,9 +61,9 @@ const Footer = ({viewcount, examData, testData, setDataNumber}) => {
 
         <Div onClick={() => { 
             if (viewcount === 1) {
-                setDataNumber(data.length - 1);
+              setQuestionNumber(data.length - 1);
             } else if (viewcount === 2) {
-                setDataNumber(data.length - 2);
+              setQuestionNumber(data.length - 2);
             }
         }}>
           마지막으로

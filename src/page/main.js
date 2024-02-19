@@ -1,15 +1,16 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import useStore from './store';
 import styled from 'styled-components'
 
-const Main = ({name, setName}) => {
+const Main = () => {
     const navigate = useNavigate();
+    const { name, setName } = useStore();
 
     const handleChange = (event) => {
         setName(event.target.value);
     };
-
 
     return (
         <Wrap>

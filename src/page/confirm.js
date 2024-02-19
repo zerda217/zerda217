@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 
 import styled from 'styled-components';
 
-const Confirm = ({examData, testData, dataCategory, sheet}) => {
+const Confirm = () => {
   useEffect(() => {
     document.title = "요양보호사 모의시험 답안제출완료";
   }, []);
 
-  console.log('!! :', dataCategory)
+  // console.log('!! :', dataCategory)
 
   // const choiceData = () => {
   //   if (lastPathComponent == 'test') {
