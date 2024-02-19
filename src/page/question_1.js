@@ -33,9 +33,9 @@ const Question_1 = ({ viewlevel, viewcount, data, dataNumber, sheet, setSheet })
             {d.text && <div style={{border: "1px solid black", padding: '5px', margin: '1px'}}>{d.text}</div>}
             {d.image !== "" &&
               <ImageContainer>
-                <img src={d.image} style={{ width: '50%', border: '1px solid black' }} alt="image" />
+                <img src={d.image} style={{ width: '50%', border: '1px solid black' }} alt='image' />
                 <img src={zoom_in} style={{ width: '3vh', padding: '1vh' }} onClick={() => setIsModal(true)} />
-                {isModal && <ImageModal image={d.image} setIsModal={setIsModal} />}
+                {isModal && <ImageModal image={d.image} setIsModal={setIsModal}>큰 이미지</ImageModal>}
               </ImageContainer>
             }
       <OptionContainer>

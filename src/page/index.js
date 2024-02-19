@@ -25,16 +25,17 @@ const Index = () => {
     const [viewcount, setviewcount] = useState(1)
     const [dataNumber, setDataNumber] = useState(0)
     const [isVisible, setIsVisible] = useState(false)
-    // console.log('index: ', sheet)
+    console.log('dataNumber: ', dataNumber)
+    console.log('index: ', sheet)
 
     useEffect(() => {
         const handleResize = () => {
           if (window.innerWidth < 830) {
-            // setIsVisible(true);
+            setIsVisible(true);
             document.title = "요양보호사 모의시험 모바일화면"; // 원하는 타이틀로 변경합니다.
-        //   } else {
-            // setIsVisible(false);
-          }
+          } else {
+            setIsVisible(false);
+          } 
         };
     
         handleResize(); // 초기화 할 때 한 번 호출하여 현재 크기에 따라 isVisible 값을 설정
@@ -51,10 +52,10 @@ const Index = () => {
     
   return (
     <Wrap>
-        {isVisible ? 
-            <Box isVisible={isVisible}>
-                모바일 접속
-            </Box> :
+        {/* {isVisible ?  */}
+            {/* <Box isVisible={isVisible}> */}
+                {/* 모바일 접속 */}
+            {/* </Box> : */}
             <Wrap>
                 <Header name={name} setviewlevel={setviewlevel} setviewcount={setviewcount} />
                 <Body>
@@ -66,8 +67,8 @@ const Index = () => {
                                 <Route path='/exam' element={<Exam name={name} viewlevel={viewlevel} viewcount={viewcount} data={examData} dataNumber={dataNumber} sheet={sheet} setSheet={setSheet} /> } />
                                 <Route path='/test' element={<Test name={name} viewlevel={viewlevel} viewcount={viewcount} data={testData} dataNumber={dataNumber} sheet={sheet} setSheet={setSheet} /> } />
                                 <Route path='/user' element={<User name={name} setName={setName} /> } />
-                                <Route path='/pre_confirm' element={<PreConfirm name={name} /> } />
-                                <Route path='/confirm' element={<Confirm name={name} /> } />
+                                <Route path='/pre_confirm' element={<PreConfirm sheet={sheet}  /> } />
+                                <Route path='/confirm' element={<Confirm examData={examData} testData={testData} sheet={sheet} /> } />
                                 {/* <Route path='/todos' element={<Todos />} /> */}
                                 {/* <Route path='/todos/:id' element={<Todo />} /> */}
                                 <Route path='/*' element={<NotFound />} />
@@ -78,9 +79,9 @@ const Index = () => {
                         </RightPanel>
                     </GridContainer>
                 </Body>
-                <Footer viewcount={viewcount} examData={examData} testData={testData} dataNumber={dataNumber} setDataNumber={setDataNumber} />
+                <Footer viewcount={viewcount} examData={examData} testData={testData} setDataNumber={setDataNumber} />
             </Wrap>
-        }
+        {/* } */}
     </Wrap>
   )
 }
@@ -118,10 +119,12 @@ const Body = styled.div`
 
 const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 0.7fr;
+    grid-template-columns: ${props => props.isVisible ? '1fr 0fr' : '1fr 300px' };
+    transition: transform 0.3s ease;
+    transform: ${props => props.isVisible ? 'scale(0)' : 'scale(1)'};
     height: calc(85vh - 4vh); /* 헤더 10vh, 푸터 5vh를 제외한 나머지 전체 높이 */
     width: 100%;
-    //   background: orange;
+    // background: orange;
 `;
 
 const LeftPanel = styled.div`

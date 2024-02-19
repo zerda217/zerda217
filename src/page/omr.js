@@ -50,7 +50,7 @@ const OMRTable = ({testData, examData, sheet, setSheet}) => {
 
 const Table = styled.table`
   border-collapse: collapse;
-  width: 100%;
+  width: 90%;
   background: #FFF;
   color: #000;
 `;

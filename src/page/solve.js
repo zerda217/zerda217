@@ -3,7 +3,8 @@ import Omr from './omr'
 
 import styled from 'styled-components'
 
-const solve = ({testData, examData, sheet, setSheet}) => {
+const Solve = ({testData, examData, sheet, setSheet}) => {
+
   return (
     <Wrap>
         <h2>답지</h2>
@@ -15,7 +16,7 @@ const solve = ({testData, examData, sheet, setSheet}) => {
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-//   justify-content: center;
+  // justify-content: center;
   align-items: center;
 //   width: 40vh;
   height: 90vh;
@@ -23,22 +24,4 @@ const Wrap = styled.div`
 //   border: 1px solid red;
 `;
 
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-`;
-
-const Th = styled.th`
-  border: 1px solid #FFF;
-  // padding: 8px;
-  text-align: center;
-  background-color: #FFF;
-`;
-
-const Td = styled.td`
-  border: 1px solid #FFF;
-  // padding: 8px;
-  text-align: center;
-`;
-
-export default solve
+export default Solve
