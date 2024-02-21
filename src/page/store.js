@@ -28,7 +28,7 @@ const UseStore = create((set) => ({
   examData: examData,
   testData: testData,
   data: [],
-  questionNumber: 88,
+  questionNumber: 1,
   sheet: [],
 
   setName: (name) => set({ name: name }),

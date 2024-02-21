@@ -5,9 +5,9 @@ import useStore from './store';
 import styled from 'styled-components'
 
 const Footer = () => {
-  const { viewcount, examData, testData, setQuestionNumber } = useStore();
+  const { viewcount, examData, testData, questionNumber, setQuestionNumber } = useStore();
   const dataType = useStore((state) => state.dataType);
-
+  console.log('questionNumber: ', questionNumber)
   const navigate = useNavigate();
 
   const choiceData = () => {
@@ -20,6 +20,16 @@ const Footer = () => {
   };
 
   const data = choiceData()
+
+  const minusQuestionNumber = (number) => {
+    console.log('number: ', number)
+    setQuestionNumber(number)
+  }
+
+  const plusQuestionNumber = (number) => {
+    console.log('number: ', number)
+    setQuestionNumber(number)
+  }
 
   const handleButtonClick = () => {
     const result = window.confirm('시험을 종료하시겠습니까?'); // 윈도우 confirm 창을 띄우는 함수
@@ -35,14 +45,14 @@ const Footer = () => {
     <Wrap>
       <div></div>
       <div style={{display:'flex'}}>
-        <Div onClick={() => setQuestionNumber(0)}>처음으로</Div>
+        <Div onClick={() => setQuestionNumber(1)}>처음으로</Div>
 
         <Div 
           onClick={() => { 
             if (viewcount === 1) {
-              setQuestionNumber(prev => prev > 0 && prev - 1);
+              minusQuestionNumber((Number(questionNumber) > 0 ? questionNumber - 1 : questionNumber));
             } else if (viewcount === 2) {
-              setQuestionNumber(prev => prev > 0 && prev - 2);
+              minusQuestionNumber((Number(questionNumber) > 0 ? questionNumber - 2 : questionNumber));
             }
         }}>
           ◀
@@ -51,9 +61,9 @@ const Footer = () => {
         <Div 
           onClick={() => { 
             if (viewcount === 1) {
-              setQuestionNumber(prev => prev < data.length - 1 && prev + 1);
+              plusQuestionNumber(questionNumber < data.length - 1 && questionNumber + 1);
             } else if (viewcount === 2) {
-              setQuestionNumber(prev => prev < data.length - 2 && prev + 2);
+              plusQuestionNumber(questionNumber < data.length - 2 && questionNumber + 2);
             }
         }}>
           ▶
@@ -61,9 +71,9 @@ const Footer = () => {
 
         <Div onClick={() => { 
             if (viewcount === 1) {
-              setQuestionNumber(data.length - 1);
+              setQuestionNumber(data.length);
             } else if (viewcount === 2) {
-              setQuestionNumber(data.length - 2);
+              setQuestionNumber(data.length - 1);
             }
         }}>
           마지막으로

@@ -7,20 +7,43 @@ import useStore from './store';
 
 const Question_1 = () => {
   const { viewlevel, viewcount, questionNumber, sheet, setSheet, testData } = useStore();
+  // const questionNumber = useStore((questionNumber) => state.questionNumber);
+
   const optionNumbers = [{1: '①'}, {2: '②'}, {3: '③'}, {4: '④'}, {5: '⑤'}]
   const [clickedOption, setClickedOption] = useState(null);
   const [isModal, setIsModal] = useState(false);
-  const data = testData;
 
   let filterData = [];
+
   if (viewcount === 1) {
-    filterData = data.filter(item => item.id === questionNumber + 1);
+    filterData = testData.filter(item => item.id === questionNumber);
   } else if (viewcount === 2) {
-    const startIndex = Math.min(questionNumber, data.length - 2);
-    filterData = data.filter((item, index) => index >= startIndex && index < startIndex + 2);
+      filterData = [];
+      for (let i = 0; i < testData.length; i += 2) {
+          if (i + 1 < testData.length) {
+              const questionNumber = testData[i].id;
+              filterData.push(testData[i], testData[i + 1]);
+              if (questionNumber % 2 === 1 && questionNumber <= 87) {
+                  filterData[filterData.length - 2].questionNumber = questionNumber;
+                  filterData[filterData.length - 1].questionNumber = questionNumber + 1;
+              } else if (questionNumber === testData.length) {
+                  filterData[filterData.length - 2].questionNumber = testData.length - 1;
+                  filterData[filterData.length - 1].questionNumber = testData.length;
+              }
+          }
+      }
   }
+
+  // if (viewcount === 1) {
+  //   filterData = testData.filter(item => item.id === questionNumber + 1);
+  // } else if (viewcount === 2) {
+  //   const startIndex = Math.min(questionNumber, testData.length - 2);
+  //   filterData = testData.filter((item, index) => index >= startIndex && index < startIndex + 2);
+  // }
   
-  // console.log('!!: ', testData)
+  console.log('testData: ', testData)
+  console.log('questionNumber: ', questionNumber)
+  console.log('viewcount: ', viewcount)
 
   const handleClick = (number) => (value) => {
     setClickedOption(value);
