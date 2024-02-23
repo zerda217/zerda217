@@ -18,20 +18,22 @@ const Question_1 = () => {
   if (viewcount === 1) {
     filterData = testData.filter(item => item.id === questionNumber);
   } else if (viewcount === 2) {
-      filterData = [];
-      for (let i = 0; i < testData.length; i += 2) {
-          if (i + 1 < testData.length) {
-              const questionNumber = testData[i].id;
-              filterData.push(testData[i], testData[i + 1]);
-              if (questionNumber % 2 === 1 && questionNumber <= 87) {
-                  filterData[filterData.length - 2].questionNumber = questionNumber;
-                  filterData[filterData.length - 1].questionNumber = questionNumber + 1;
-              } else if (questionNumber === testData.length) {
-                  filterData[filterData.length - 2].questionNumber = testData.length - 1;
-                  filterData[filterData.length - 1].questionNumber = testData.length;
-              }
-          }
-      }
+      const startIndex = Math.min(questionNumber, testData.length - 2);
+      filterData = testData.filter((item) => item.id >= startIndex && item.id < startIndex + 2);
+      // filterData = [];
+      // for (let i = 0; i < testData.length; i += 2) {
+      //     if (i + 1 < testData.length) {
+      //         const questionNumber = testData[i].id;
+      //         filterData.push(testData[i], testData[i + 1]);
+      //         if (questionNumber % 2 === 1 && questionNumber <= 87) {
+      //             filterData[filterData.length - 2].questionNumber = questionNumber;
+      //             filterData[filterData.length - 1].questionNumber = questionNumber + 1;
+      //         } else if (questionNumber === testData.length) {
+      //             filterData[filterData.length - 2].questionNumber = testData.length - 1;
+      //             filterData[filterData.length - 1].questionNumber = testData.length;
+      //         }
+      //     }
+      // }
   }
 
   // if (viewcount === 1) {
@@ -40,10 +42,6 @@ const Question_1 = () => {
   //   const startIndex = Math.min(questionNumber, testData.length - 2);
   //   filterData = testData.filter((item, index) => index >= startIndex && index < startIndex + 2);
   // }
-  
-  console.log('testData: ', testData)
-  console.log('questionNumber: ', questionNumber)
-  console.log('viewcount: ', viewcount)
 
   const handleClick = (number) => (value) => {
     setClickedOption(value);

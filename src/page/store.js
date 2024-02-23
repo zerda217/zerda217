@@ -40,9 +40,18 @@ const UseStore = create((set) => ({
   setQuestionNumber: (questionNumber) => set({ questionNumber: questionNumber }),
 
   setSheet: (newSheet) => set((state) => {
-    const updatedSheet = [...state.sheet, ...newSheet];
+    const updatedSheet = [...state.sheet];
+    newSheet.forEach(newData => {
+        const key = Object.keys(newData)[0];
+        const index = updatedSheet.findIndex(item => Object.keys(item)[0] === key);
+        if (index !== -1) {
+            updatedSheet[index] = newData;
+        } else {
+            updatedSheet.push(newData);
+        }
+    });
     return { sheet: updatedSheet };
-  }),
+}),
     
   setData: (newData) => set((state) => {
     const updatedData = [...state.data, ...newData];

@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react'
 
+import useStore from './store';
 import styled from 'styled-components';
 
 const Confirm = () => {
+  const { setviewlevel, setviewcount, setDataType, setQuestionNumber, setSheet, setData } = useStore();
+
   useEffect(() => {
     document.title = "요양보호사 모의시험 답안제출완료";
+    setviewlevel(0)
+    setviewcount(1)
+    setDataType('')
+    setQuestionNumber(1)
+    setSheet([])
+    setData([])
   }, []);
 
   // console.log('!! :', dataCategory)
